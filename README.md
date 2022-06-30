@@ -1,3 +1,7 @@
+## SERVICIO Rest
+Utiliza el siguiente api rest para trabajar con los paises del mundo.
+(https://restcountries.com/)
+
 # 03PaisesApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
