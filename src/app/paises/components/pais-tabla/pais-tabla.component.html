@@ -5,6 +5,7 @@
       <th>Bandera</th>
       <th>Nombre</th>
       <th>Población</th>
+      <th>Capital</th>
       <th></th>
     </tr>
   </thead>
@@ -14,6 +15,13 @@
       <td><img [src]="pais.flags.png" [alt]="pais.name.common" class="small-flag"></td>
       <td>{{pais.name.common}}</td>
       <td>{{pais.population | number:'1.0-0'}}</td>
+      <td>
+        <ul>
+            <li *ngFor="let capital of pais.capital">
+              {{capital}}
+            </li>
+        </ul>
+      </td>
       <td>
         <a class="btn btn-primary"
            [routerLink]="['/pais', pais.cca2]"

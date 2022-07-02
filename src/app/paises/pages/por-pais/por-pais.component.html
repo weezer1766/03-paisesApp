@@ -2,13 +2,17 @@
 <hr>
 <div class="row">
   <div class="col">
-    <app-pais-buscar></app-pais-buscar>
+    <app-pais-buscar
+      [txtPlaceHolderHijo]="txtPlaceHolder"
+      (onEmitirTerminoBuscar)="buscar($event)"
+      (onDebounce)="coincidencias($event)" >
+    </app-pais-buscar>
   </div>
 </div>
 
 <hr>
 <div class="alert alert-danger" *ngIf="bError">
-  No se encontró nada con el término: {{terminoMsgError}}
+  No se encontró nada con el término: {{termino}}
 </div>
 
 <div class="row" *ngIf="listPaises.length>0">

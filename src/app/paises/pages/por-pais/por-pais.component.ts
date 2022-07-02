@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Country, NotificarPaisResultado } from '../../interfaces/pais-interfaces';
+import { Country } from '../../interfaces/pais-interfaces';
 import { PaisService } from '../../services/pais.service';
 
 @Component({
@@ -9,25 +9,44 @@ import { PaisService } from '../../services/pais.service';
 })
 export class PorPaisComponent implements OnInit {
 
+  public termino: string = '';
   public bError: boolean = false;
-  public terminoMsgError: string = '';
+  //public terminoMsgError: string = '';
   public listPaises: Country[] = [];
+
+  public txtPlaceHolder: string = 'Buscar por nombre de país...';
 
   constructor(
     public paisService: PaisService
   ) { }
 
   ngOnInit(): void {
-
-    this.paisService.notificarPaisResultado.subscribe({
-      next: (response: NotificarPaisResultado) => {
-        this.bError = response.bError;
-        this.terminoMsgError = response.terminoMsgError;
-        this.listPaises = response.listPaises;
-      }
-    });
-
   }
 
+  buscar(termino: string): void{
+    console.log(`por-pais.component.ts ==>${termino}`);
+
+    this.bError = false;
+    this.termino = termino;
+    //this.terminoMsgError = '';
+    this.listPaises = [];
+
+    this.paisService.buscarPaisPorNombre(this.termino).subscribe({
+      next: response => {
+        this.listPaises = response;
+      },
+      error: err => {
+        console.log(err);
+        this.bError = true;
+        //this.terminoMsgError = termino;
+      }
+    });
+  }
+
+  coincidencias(event: any){
+    this.bError = false;
+    console.log(`coincidencias=> ${event}`);
+    //CREANDO SUGERENCIAS
+  }
 
 }

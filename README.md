@@ -21,17 +21,15 @@ AppRoutingModule --> Modulo creado por nosotros que gestiona las rutas
 Nota de actualización:
 Importante!
 Restcountries.eu ya no existe, por lo que ahora se encuentra uno muy similar aquí: restcountries.com
-
 El problema es que tiene unas pequeñas diferencias, luego verán en unos videos unas notas de actualización para que puedan apreciar los cambios y seguir los videos sin problemas.
 
 Ajusten los nombres que verán por el nuevo enpoint.
 
 Ejemplo:
 En el video ustedes verán:
-
 private apiUrl: string = 'https://restcountries.eu/rest/v2';
-Lo cambiarán por
 
+Lo cambiarán por 
 private apiUrl: string = 'https://restcountries.com/v2';
 Sólo tengan cuidado con los nombres y los argumentos de respuesta.
 
@@ -47,3 +45,22 @@ debe estar subscrito a dicho observable.
 
 5. of: es una función que genera observables el cual transforma lo que sea que se coloque entre los parentesis
 en un nuevo observable.
+
+6. DebounceTime: se utiliza por lo general cuando la búsqueda va a consumir un servicio rest al momento de ir tipeando
+información sobre el control, el string asociado al debounce se emite cuando el usuario deja de escribir.
+Para crear un debounceTime se debe utilizar la clase "Subject", este es un observable especial,
+en esta aplicación, se usará para que el observable se emita cuando el usuario deje de escribir en la caja de texto
+de búsqueda.
+
+7. ngOnInit(): este método del ciclo de vida de un componente se dispara una única vez cuando el componente es creado 
+y ya esta inicializado.
+
+8. pipe al aplicarse a un suscribe de un observable, permite transformar la salida del suscribe antes de que se retorne.
+
+9. OPERADORES DE RXJS: Operadores que transforman el producto del suscribe de un observable.
+
+10. switchMap: Operador de RXJS de transformación, el cual permite recibir un observable y regresar otro observable, es decir,
+toma el resultado de un observable y retorna un observable
+
+11. tap: Operador que dispara un efecto secundario del observable, es decir recibe el producto del observable que lo invoca y 
+con esto se puede imprimir directamente en consola

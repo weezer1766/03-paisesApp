@@ -1,1 +1,54 @@
-<p>ver-pais works!</p>
+<div class="alert alert-info" *ngIf="!pais else divPais">
+  Espere por favor...
+</div>
+
+<ng-template #divPais>
+  <div class="row" >
+    <div class="col">
+      <h1>PAIS: <small>{{pais.name.common}}</small></h1>
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img [src]="pais.flags.png" [alt]="pais.name.common" class="img-thumbnail">
+    </div>
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+          <li class="list-group-item">
+            <strong>Población:</strong> {{pais.population | number:'1.0-0'}}
+          </li>
+          <li class="list-group-item">
+            <strong>Capital:</strong> {{pais.capital[0]}}
+          </li>
+          <li class="list-group-item">
+            <strong>Código CCA3:</strong> {{pais.cca3}}
+          </li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Traducciones</h3>
+  <div class="row" >
+    <div class="col">
+      <span class="badge bg-primary mr-1">{{ pais.translations['ara'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['fra'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['deu'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['est'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['fin'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['hun'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['rus'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['zho'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['swe'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['spa'].common }}</span>
+      <span class="badge bg-primary mr-1">{{ pais.translations['pol'].common }}</span>
+    </div>
+  </div>
+
+  <!--<pre></pre>: Permite ver el texto como si fuera código en conjunto con boostrap-->
+  <pre class="mt-5">
+    {{pais | json}}
+  </pre>
+</ng-template>

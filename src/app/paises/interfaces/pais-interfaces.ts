@@ -110,12 +110,3 @@ export interface PostalCode {
   format: string;
   regex:  string;
 }
-
-/******************************************************************************/
-/*                    INTEFACES DEFINIDAS POR DESARROLLADOR                   */
-/******************************************************************************/
-export interface NotificarPaisResultado{
-  terminoMsgError: string;
-  bError: boolean;
-  listPaises: Country[];
-}
