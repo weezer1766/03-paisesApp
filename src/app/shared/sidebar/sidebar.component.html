@@ -1,1 +1,24 @@
-<p>sidebar works!</p>
+<h2>Busquedas</h2>
+<hr>
+<ul class="list-group">
+    <!--[ngClass]="{'active': true}"-->
+    <!--Para el caso del path vacio ('') en el routing se debe colocar [routerLinkActiveOptions]="{ exact: true}"
+    el cual indica que se verá con el estilo activo siempre y cuando la url del navegador sea exacto al path
+    definido en el route-->
+    <li class="list-group-item"
+        [routerLink]="['']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true}">
+      Buscar país
+    </li>
+    <li class="list-group-item"
+        [routerLink]="['/region']"
+        routerLinkActive="active">
+      Por región
+    </li>
+    <li class="list-group-item"
+        [routerLink]="['/capital']"
+        routerLinkActive="active">
+      Por capital
+    </li>
+</ul>
