@@ -3,6 +3,13 @@
 </div>
 
 <ng-template #divPais>
+  <a
+    class="nav-link"
+    [routerLink]="['/pais']"
+    routerLinkActive="active" >
+    Regresar
+  </a>
+
   <div class="row" >
     <div class="col">
       <h1>PAIS: <small>{{pais.name.common}}</small></h1>

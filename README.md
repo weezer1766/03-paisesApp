@@ -3,6 +3,10 @@
 Utiliza el siguiente api rest para trabajar con los paises del mundo.
 (https://restcountries.com/)
 
+# ANIMATED.CSS
+Utiliza la siguiente librería para dar animación a los resultados.
+https://animate.style/
+
 # ENLACES UTILES
 
 Difference between [routerLink] and routerLink
@@ -64,3 +68,19 @@ toma el resultado de un observable y retorna un observable
 
 11. tap: Operador que dispara un efecto secundario del observable, es decir recibe el producto del observable que lo invoca y 
 con esto se puede imprimir directamente en consola
+
+12. Formas de trabajar con "class, [class], [ngClass]":
+--*******************************************************************************
+[class]="(region===regionActiva) ? 'btn btn-primary' : 'btn btn-outline-primary'"
+--*******************************************************************************
+class="btn"
+[class.btn-primary]="region===regionActiva"
+[class.btn-outline-primary]="region!==regionActiva"
+--*******************************************************************************
+[ngClass]="region==regionActiva ? 'btn btn-primary' : 'btn btn-outline-primary'"
+--*******************************************************************************
+[ngClass]="{
+  'btn': true,
+  'btn-primary': region===regionActiva,
+  'btn-outline-primary': region!==regionActiva
+}"

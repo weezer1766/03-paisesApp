@@ -1,13 +1,40 @@
-<h2>Por País</h2>
-<hr>
-<div class="row">
-  <div class="col">
-    <app-pais-buscar
-      [txtPlaceHolderHijo]="txtPlaceHolder"
-      (onEmitirTerminoBuscar)="buscar($event)"
-      (onDebounce)="coincidencias($event)" >
-    </app-pais-buscar>
+<div class="animate__animated animate__fadeIn animated__faster">
+  <h2>Por País</h2>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <app-pais-buscar
+        [txtPlaceHolderHijo]="txtPlaceHolder"
+        (onEmitirTerminoBuscar)="buscar($event)"
+        (onDebounce)="coincidencias($event)" >
+      </app-pais-buscar>
+    </div>
   </div>
+
+  <ul class="list-group" *ngIf="listPaisesCoincidencia.length>0">
+    <li class="list-group-item list-group-item-action"
+      *ngFor="let pais of listPaisesCoincidencia">
+      <!--
+      <a
+        class="nav-link"
+        (click)="buscar(pais.name.common)">
+        {{pais.name.common}}
+      </a>
+      -->
+      <a class="nav-link"
+        [routerLink]="['/pais', pais.cca2]"
+        routerLinkActive="active" >
+        {{pais.name.common}}
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-action">
+      <a class="nav-link"
+        (click)="buscar(termino)">
+        Buscar "{{termino}}"
+      </a>
+    </li>
+  </ul>
+
 </div>
 
 <hr>

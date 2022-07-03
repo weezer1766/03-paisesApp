@@ -1,12 +1,22 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError, tap } from 'rxjs';
 import { Country } from '../interfaces/pais-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaisService {
+  //private fields: string ="?fields=name,flags,population,capital,cca2";
+  private fields: string ="name,flags,population,capital,cca2";
+
+  get httpParams(): HttpParams {
+    return new HttpParams().set('fields', this.fields);
+  }
+  /*
+  private params = new HttpParams()
+      .set('fields', this.fields);
+  */
 
   private endpoint: string = 'https://restcountries.com/v3.1';
   //private endpoint: string = 'https://restcountries.com/v2';
@@ -24,7 +34,7 @@ export class PaisService {
 
   public buscarPaisPorNombre(termino: string): Observable<Country[]> {
 
-    return this.http.get<Country[]>(`${this.endpoint}/name/${termino}`);
+    return this.http.get<Country[]>(`${this.endpoint}/name/${termino}`, {params: this.httpParams});
 
     /*
     return this.http.get<any>(`${this.endpoint}/name/${termino}`).pipe(
@@ -44,12 +54,15 @@ export class PaisService {
 
   }
 
-  public buscarPaisPorRegion(termino: string): void {
-
+  public buscarPaisPorRegion(termino: string): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.endpoint}/region/${termino}`, {params: this.httpParams});
   }
 
   public buscarPaisPorCapital(termino: string): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.endpoint}/capital/${termino}`);
+    return this.http.get<Country[]>(`${this.endpoint}/capital/${termino}`, {params: this.httpParams})
+      .pipe(
+        tap(console.log)
+      );
   }
 
   //CONSUME UN ENDPOINT QUE DEVUELVE UN ARREGLO Y LO DEVUELVE SIN TRANSFORMARLO

@@ -14,6 +14,8 @@ export class PorPaisComponent implements OnInit {
   //public terminoMsgError: string = '';
   public listPaises: Country[] = [];
 
+  public listPaisesCoincidencia: Country[] = [];
+
   public txtPlaceHolder: string = 'Buscar por nombre de país...';
 
   constructor(
@@ -30,6 +32,7 @@ export class PorPaisComponent implements OnInit {
     this.termino = termino;
     //this.terminoMsgError = '';
     this.listPaises = [];
+    this.listPaisesCoincidencia = [];
 
     this.paisService.buscarPaisPorNombre(this.termino).subscribe({
       next: response => {
@@ -44,9 +47,22 @@ export class PorPaisComponent implements OnInit {
   }
 
   coincidencias(event: any){
-    this.bError = false;
     console.log(`coincidencias=> ${event}`);
+
+    this.bError = false;
+    this.termino = event;
+    this.listPaisesCoincidencia = [];
+
     //CREANDO SUGERENCIAS
+    this.paisService.buscarPaisPorNombre(event).subscribe({
+      next: response =>{
+        this.listPaisesCoincidencia = response.splice(0,5);
+      },
+      error: err => {
+        console.log(err);
+        this.bError = true;
+      }
+    });
   }
 
 }
